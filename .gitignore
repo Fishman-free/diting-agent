@@ -346,3 +346,4 @@ knowledge/cache/
 knowledge/adversarial/
 diting/**/*.db
 *.diting-runtime/
+/.venv/

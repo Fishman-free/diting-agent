@@ -42,6 +42,9 @@ Hermes 原有能力全部保留：多平台网关（Telegram/Discord/Slack/Whats
 ## 快速开始（Windows）
 
 ```bash
+# 0. 生成桌面图标：此后双击「谛听 Diting」即启动（首启自动建 venv+装依赖+建库）
+powershell -ExecutionPolicy Bypass -File scripts\make_desktop_shortcut.ps1
+
 # 1. 安装（要求 Python 3.11–3.14；内部包名沿用 hermes-agent 以保线协议兼容）
 pip install -e .
 

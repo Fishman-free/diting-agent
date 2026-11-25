@@ -43,6 +43,21 @@ print(t.concentration, t.resonance, t.missing_negatives)   # 逆向回溯
 
 ## 2. 完整 Agent 形态（Hermes 底座）
 
+### 桌面一键启动（推荐）
+
+双击桌面 **「谛听 Diting」图标** 即进入 TUI。图标不存在时生成一次：
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts\make_desktop_shortcut.ps1
+```
+
+首次双击自动完成：创建仓库内隔离 `.venv` → 用 uv 安装依赖（上游
+`[tool.uv] override-dependencies` 会应用 Pillow 安全修复版 override，
+裸 pip 在 Python 3.14 下解析不了该冲突）→ 构建种子知识库。此后双击直达。
+图标指向 `scripts/launch_diting.bat`；换机器/换目录后重跑上面那条命令即可。
+
+### 命令行启动
+
 ```bash
 pip install -e .
 diting            # 或 hermes —— 两个入口等价，进入 TUI
