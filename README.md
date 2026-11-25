@@ -53,7 +53,7 @@ diting            # 谛听品牌入口
 hermes            # 上游入口
 
 # 4. 无 LLM 也能跑：甄别内核全链路规则降级
-python diting/backtest/run.py          # 回测 + 报告
+python -m diting.backtest.run          # 回测 + 报告
 ```
 
 ### 对话中使用（插件工具）
@@ -102,23 +102,29 @@ diting/                    # 谛听创新层（本项目全部新增代码）
 ├── watcher/               #   授权制浏览画像
 ├── longtask/              #   长任务记忆
 ├── relay/                 #   中转站诊断与修复
-└── backtest/              #   回测框架
-plugins/diting_guard/      # Hermes 插件：工具/CLI/hook 注册
+├── backtest/              #   回测框架（六段式验收）
+└── tests/                 #   113 项测试（97 内核 + 16 谛听模块）
+plugins/diting_guard/      # Hermes 插件：13 工具 + diting CLI + 会话钩子
 plugins/model-providers/custom/  # 中转站兼容修复（上游插件内修改）
-docs/                      # 设计文档 + 上游 README 归属保留
+docs/                      # 使用手册 + 防投毒白皮书 + 上游 README 归属保留
 ```
 
-架构决策、GEO 防投毒七道防线、数据契约见 `docs/`（设计文档）与 `openspec` 规格
-（上游内核仓库 [platform-financial-agent](https://github.com/Fishman-free/platform-financial-agent)）。
+- 📖 **[使用手册](docs/DITING_GUIDE.md)** —— 安装、中转站配置、对话工具、CLI、授权与隐私
+- 🛡️ **[GEO 防投毒七层防线白皮书](docs/ANTI_POISONING.md)** —— 每层防什么、怎么防、回测证据
+- 架构决策与数据契约见上游内核仓库
+  [platform-financial-agent](https://github.com/Fishman-free/platform-financial-agent)
+  （docs/00~07 设计文档 + openspec 六能力 39 条规格）
 
 ## 回测
 
 ```bash
-python diting/backtest/run.py --report BACKTEST_REPORT.md
+python -m diting.backtest.run --report BACKTEST_REPORT.md
 ```
 
 输出：三档风险混淆矩阵、话术 Recall@5、注入检出率、多源共振/反证缺失检出、
-推荐避毒命中率、relay doctor 自检。合成对抗语料仅内部评测，不入库不外发。
+推荐避毒命中率、relay doctor 自检。最近一次结果（[BACKTEST_REPORT.md](BACKTEST_REPORT.md)）：
+**验收阈值 9/9 通过**，注入检出 100%、软文 ≥MEDIUM 100%、良性误报 0/8、Recall@5 = 1.00。
+合成对抗语料仅内部评测，不入库不外发。
 
 ## 许可与归属
 
