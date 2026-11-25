@@ -740,9 +740,15 @@ include = [
   "tools.*",
   "utils",
   "utils.*",
+  # === Diting 谛听创新层 ===
+  "diting",
+  "diting.*",
 ]
 
 [tool.setuptools.package-data]
+"diting.knowledge" = [
+  "seed/*.json",
+]
 hermes_cli = [
   "observability/schemas/*.json",
   "data/*.json",

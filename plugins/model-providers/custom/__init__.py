@@ -86,9 +86,24 @@ class CustomProfile(ProviderProfile):
     def fetch_models(
         self, *, api_key: str | None = None, base_url: str | None = None, timeout: float = 8.0
     ) -> list[str] | None:
-        """base_url is user-configured; fetch only if set."""
+        """base_url is user-configured; fetch only if set.
+
+        Diting patch（中转站兼容，issue: micuapi.ai 等）：部分 relay 裸域 301 到 www 子域，
+        urllib 跨域重定向会剥离 Authorization → 目录探测 401 → 模型选择器为空。
+        探测前先解析重定向链取最终 URL（进程内记忆化，每个 URL 只探测一次；
+        解析失败或 diting 层缺失时按原 URL 走上游行为，绝不阻断）。
+        """
         if not (base_url or self.base_url):
             return None
+        try:
+            from diting.relay import resolve_base_url
+
+            target = base_url or self.base_url
+            resolved = resolve_base_url(target, timeout=min(timeout, 5.0))
+            if resolved and resolved != str(target).rstrip("/"):
+                base_url = resolved
+        except Exception:
+            pass
         return super().fetch_models(api_key=api_key, base_url=base_url, timeout=timeout)
 
 
