@@ -1,0 +1,24 @@
+谛听 Diting Agent
+=================
+
+Copyright (c) 2026 Diting Agent contributors
+（中国人民大学 2026 大学生创新训练计划「面向用户的平台治理支持智能体系统」项目组）
+
+本产品基于 Nous Research 的 Hermes Agent 修改而来：
+
+  Hermes Agent — The self-improving AI agent
+  https://github.com/NousResearch/hermes-agent
+  Copyright (c) 2025 Nous Research
+  Licensed under the MIT License (see LICENSE)
+
+修改说明（依 MIT 条款保留原始版权声明）：
+- 产品更名：Hermes Agent → 谛听 Diting Agent（新增 `diting` CLI 入口别名；
+  内部发行名与协议标识符保留 `hermes-agent` 以维持 ACP/gateway 等线协议兼容）
+- 新增 `diting/` 目录：GEO 逆向甄别内核（geo_guard）、避毒推荐引擎、
+  浏览画像守护（授权制）、长任务记忆、中转站诊断（relay doctor）、回测框架
+- 新增 `plugins/diting_guard/`：将上述能力注册为 Hermes 插件工具
+- 修改 `plugins/model-providers/custom/`：修复部分 OpenAI 兼容中转站
+  （301 重定向导致鉴权头丢失等）无法使用的问题
+- 其余 27,000+ 文件保持上游原样，未做更名（降低维护冲突风险）
+
+上游 README 完整保留于 docs/upstream-hermes-README.md。
