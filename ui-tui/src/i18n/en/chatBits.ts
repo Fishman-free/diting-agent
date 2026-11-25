@@ -4,15 +4,15 @@
 // in entry.tsx. Owned namespace: `chatBits`.
 //
 // loaders.tsx and banner.ts carry no prose (glyph runs + brand art only), so
-// they have no leaves here. Brand names ("Hermes", "Nous Research"), slash
-// command names and hotkey chords stay as-is inside the sentences that carry
-// them; the sentence itself is the translatable unit.
+// they have no leaves here. Brand names ("谛听 Diting"), slash command names
+// and hotkey chords stay as-is inside the sentences that carry them; the
+// sentence itself is the translatable unit.
 
 export const chatBitsEn = {
   chatBits: {
     branding: {
-      tagFull: 'Nous Research · Messenger of the Digital Gods',
-      tagMid: 'Messenger of the Digital Gods',
+      tagFull: '听万物 · 辨真伪 — Listen to All, Discern the True',
+      tagMid: '听万物 · 辨真伪',
       scanningSkills: 'scanning skills',
       moreCategories: (count: number) => `(and ${count} more categories…)`,
       moreToolsets: (count: number) => `(and ${count} more toolsets…)`,

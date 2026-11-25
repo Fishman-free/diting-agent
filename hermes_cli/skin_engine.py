@@ -56,13 +56,21 @@ def _wings(*glyphs) -> list[list[str]]:
             for g in glyphs]
 
 
-# Branding shared by every Hermes-named built-in (mono/daylight override help_header).
-_HERMES_BRANDING: dict[str, str] = _branding(
-    "Hermes", "☤", "Goodbye! ☤", prompt="❯", help_header="(^_^)? Available Commands")
+# 谛听产品品牌：所有中性内置皮肤共享（mono/daylight 覆盖 help_header）；
+# 人格皮肤（ares/poseidon/sisyphus/charizard）保留各自 persona。
+# 品牌符号 ◉ = 听波之环，呼应 assets/diting.ico 与启动横幅的「听波」hero。
+_DITING_BRANDING: dict[str, str] = {
+    "agent_name": "谛听 Diting",
+    "welcome": "欢迎使用谛听 Diting！输入消息，或 /help 查看命令。",
+    "goodbye": "再会！◉",
+    "response_label": " ◉ 谛听 ",
+    "prompt_symbol": "❯",
+    "help_header": "(◉‿◉)? Available Commands",
+}
 
 _BUILTIN_SKINS: dict[str, dict[str, Any]] = {
     "default": {
-        "name": "default", "description": "Classic Hermes — gold and kawaii",
+        "name": "default", "description": "Classic Diting — 墨底鎏金 gold and kawaii",
         # Dark-authored; values match the TUI's DARK_THEME so both render the same gold.
         "colors": {
             "banner_border": "#CD7F32", "banner_title": "#FFD700", "banner_accent": "#FFBF00",
@@ -92,7 +100,7 @@ _BUILTIN_SKINS: dict[str, dict[str, Any]] = {
             "completion_menu_bg": "#F5F5F5", "completion_menu_current_bg": "#E0D1BF",
             "selection_bg": "#D4E4F7", "status_bar_bg": "#F5F5F5", "voice_status_bg": "#F5F5F5"},
         "spinner": {},  # empty = hardcoded defaults in display.py
-        "branding": _HERMES_BRANDING,
+        "branding": _DITING_BRANDING,
         "tool_prefix": "┊"},
     "ares": {
         "name": "ares", "description": "War-god theme — crimson and bronze",
@@ -153,7 +161,7 @@ _BUILTIN_SKINS: dict[str, dict[str, Any]] = {
             "completion_menu_current_bg": "#464646", "selection_bg": "#505050",
             "shell_dollar": "#aaaaaa", "voice_status_bg": "#1F1F1F"},
         "spinner": {},
-        "branding": {**_HERMES_BRANDING, "help_header": "[?] Available Commands"},
+        "branding": {**_DITING_BRANDING, "help_header": "[?] Available Commands"},
         "tool_prefix": "┊"},
     "slate": {
         "name": "slate", "description": "Cool blue — developer-focused",
@@ -169,7 +177,7 @@ _BUILTIN_SKINS: dict[str, dict[str, Any]] = {
             "session_border": "#545E6B", "completion_menu_bg": "#151C2F",
             "completion_menu_current_bg": "#324867", "selection_bg": "#3A5375",
             "shell_dollar": "#7eb8f6", "voice_status_bg": "#151C2F"},
-        "spinner": {}, "branding": _HERMES_BRANDING, "tool_prefix": "┊"},
+        "spinner": {}, "branding": _DITING_BRANDING, "tool_prefix": "┊"},
     "daylight": {
         "name": "daylight",
         "description": "Light theme for bright terminals with dark text and cool blue accents",
@@ -187,7 +195,7 @@ _BUILTIN_SKINS: dict[str, dict[str, Any]] = {
             "completion_menu_meta_current_bg": "#BFDBFE", "selection_bg": "#D3E0FB",
             "shell_dollar": "#2563EB", "voice_status_bg": "#E5EDF8"},
         "spinner": {},
-        "branding": {**_HERMES_BRANDING, "help_header": "[?] Available Commands"},
+        "branding": {**_DITING_BRANDING, "help_header": "[?] Available Commands"},
         "tool_prefix": "│"},
     "warm-lightmode": {
         "name": "warm-lightmode",
@@ -205,7 +213,7 @@ _BUILTIN_SKINS: dict[str, dict[str, Any]] = {
             "completion_menu_current_bg": "#E8DCC8", "completion_menu_meta_bg": "#F0E8D8",
             "completion_menu_meta_current_bg": "#DFCFB0", "selection_bg": "#E8DAD0",
             "shell_dollar": "#8B4513", "voice_status_bg": "#F5F0E8"},
-        "spinner": {}, "branding": _HERMES_BRANDING, "tool_prefix": "┊"},
+        "spinner": {}, "branding": _DITING_BRANDING, "tool_prefix": "┊"},
     "poseidon": {
         "name": "poseidon", "description": "Ocean-god theme — deep blue and seafoam",
         "colors": {

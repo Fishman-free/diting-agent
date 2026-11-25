@@ -342,7 +342,7 @@ COMMAND_REGISTRY: list[CommandDef] = [
                cli_only=True, args_hint="<path>", desktop="terminal"),
     CommandDef("update", "Update Hermes Agent to the latest version", "Info",
                busy_policy="dispatch", desktop="terminal"),
-    CommandDef("version", "Show Hermes Agent version", "Info", aliases=("v",),
+    CommandDef("version", "Show 谛听 Diting version", "Info", aliases=("v",),
                busy_policy="dispatch", execute="version"),
     CommandDef("debug", "Debug report (versions, config keys, error counts; no log text): shows the privacy notice; /debug upload shares links",
                "Info",

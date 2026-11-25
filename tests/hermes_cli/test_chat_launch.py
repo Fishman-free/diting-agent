@@ -40,7 +40,7 @@ def test_hermes_command_runs_this_install_without_pythonpath(tmp_path):
     child = subprocess.run(hermes_command(['--version']), env=env, cwd=str(tmp_path), capture_output=True,
                            text=True, timeout=60, check=False)
     assert child.returncode == 0, child.stderr
-    assert child.stdout.startswith('Hermes Agent v')
+    assert child.stdout.startswith('谛听 Diting v')
     assert f'Install directory: {PROJECT_ROOT}\n' in child.stdout
 
 

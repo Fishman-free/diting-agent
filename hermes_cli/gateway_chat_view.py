@@ -597,11 +597,11 @@ class GatewayChatView:
             from prompt_toolkit import PromptSession
             from prompt_toolkit.patch_stdout import patch_stdout
             from hermes_cli.skin_engine import get_active_prompt_symbol, get_active_skin
-            welcome = "Welcome to Hermes Agent! Type your message or /help for commands."
+            welcome = "欢迎使用谛听 Diting！输入消息，或 /help 查看命令。"
             print(get_active_skin().get_branding("welcome", welcome), flush=True)
             # The classic status bar's leading segments: model, then the attached session.
             prompt = PromptSession(erase_when_done=True,
-                                   bottom_toolbar=lambda: f" \u2624 {self.model} \u2502 {self.session_id} ")
+                                   bottom_toolbar=lambda: f" \u25c9 {self.model} \u2502 {self.session_id} ")
             prompt_symbol = get_active_prompt_symbol("❯ ")
             self._composer = prompt if sys.stdin.isatty() else None
             with patch_stdout():

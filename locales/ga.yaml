@@ -543,7 +543,7 @@ gateway:
     timed_out: "❌ Chuaigh nuashonrú Hermes thar am tar éis 30 nóiméad."
     finished_success: "✅ Críochnaíodh nuashonrú Hermes go rathúil."
     last_lines: "{msg}\n\nLínte deiridh:\n```\n{tail}\n```"
-    managed_action: "Hermes Agent a nuashonrú"
+    managed_action: "谛听 Diting a nuashonrú"
     not_applicable: "✗ Ní bhaineann `hermes update` leis an suiteáil seo ({method}).\nNuashonraigh le: {command}"
   usage:
     rate_limits: "⏱️ **Teorainneacha Ráta:** {state}"
@@ -1503,13 +1503,13 @@ platform:
       size_downgraded: "Sáraíonn méid {label} {size_mb}MB an teorainn {cap}; seoladh mar chomhad ina ionad."
   email:
     image_line: "Íomhá: {url}"
-    standalone_subject: "Hermes Agent"
+    standalone_subject: "谛听 Diting"
   dingtalk:
     emotion:
       thinking: "🤔Ag smaoineamh"
       done: "🥳Déanta"
   irc:
-    quit_message: "Hermes Agent ag múchadh"
+    quit_message: "谛听 Diting ag múchadh"
     standalone_quit: "seachadta"
   relay:
     confirm_approve_once: "Ceadaigh uair amháin"
@@ -1533,7 +1533,7 @@ slash:
   sethome:
     description: "Socraigh an comhrá seo mar an cainéal baile"
   update:
-    description: "Nuashonraigh Hermes Agent go dtí an leagan is déanaí"
+    description: "Nuashonraigh 谛听 Diting go dtí an leagan is déanaí"
   category:
     session: "Seisiún"
     configuration: "Cumraíocht"
@@ -1741,7 +1741,7 @@ slash:
   image:
     description: "Ceangail comhad íomhá logánta do do chéad leid eile"
   version:
-    description: "Taispeáin leagan Hermes Agent"
+    description: "Taispeáin leagan 谛听 Diting"
   debug:
     description: "Tuarascáil dhífhabhtaithe (leaganacha, eochracha cumraíochta, comhaireamh earráidí; gan téacs loga): taispeántar an fógra príobháideachta ar dtús; roinneann /debug upload naisc"
   quit:
@@ -1828,8 +1828,8 @@ cli:
     no_saved_card_add_funds_hint: "Níl aon chárta sábháilte ar comhad — treoraíonn “Cuir cistí leis” tú trí cheann a chur leis."
     actions_require_admin: "Teastaíonn riarthóir/úinéir eagraíochta le haghaidh gníomhartha billeála."
     remote_spending_off_for_org: "Tá caiteachas cianda as don eagraíocht seo."
-    killswitch_reason_overview: "Is féidir le riarthóir billeála é a chur ar siúl ó leathanach Hermes Agent na tairsí chun cistí a chur leis anseo."
-    killswitch_reason_buy: "Is féidir le riarthóir billeála é a chur ar siúl ó leathanach Hermes Agent na tairsí roimh chistí a chur leis."
+    killswitch_reason_overview: "Is féidir le riarthóir billeála é a chur ar siúl ó leathanach 谛听 Diting na tairsí chun cistí a chur leis anseo."
+    killswitch_reason_buy: "Is féidir le riarthóir billeála é a chur ar siúl ó leathanach 谛听 Diting na tairsí roimh chistí a chur leis."
     add_funds_now_hint: "Cuir cistí leis anois — muirear aonair, curtha le d'iarmhéid inniu."
     refill_when_low_amounts: "Athlíon nuair atá sé íseal — gearrtar {reload_to} go huathoibríoch nuair a thiteann d'iarmhéid faoi bhun {threshold}."
     refill_when_low_generic: "Athlíon nuair atá sé íseal — gearrtar muirear ar do chárta go huathoibríoch nuair a thiteann d'iarmhéid faoi bhun an mhéid a shocraíonn tú."
@@ -1900,7 +1900,7 @@ cli:
     charge_failed_card_declined: "🔴 Diúltaíodh do chárta. Bain triail as cárta eile ar an tairseach."
     charge_failed_generic: "🔴 Níor éirigh leis an muirear ({reason})."
     charge_error_no_payment_method: "💳 Níl aon chárta ar comhad — breisigh agus bainistigh billeáil ar an tairseach."
-    charge_error_remote_spending_disabled: "Tá caiteachas cianda as don chuntas seo — is féidir le riarthóir billeála é a chur ar siúl ó leathanach Hermes Agent na tairsí."
+    charge_error_remote_spending_disabled: "Tá caiteachas cianda as don chuntas seo — is féidir le riarthóir billeála é a chur ar siúl ó leathanach 谛听 Diting na tairsí."
     charge_error_role_required: "Teastaíonn riarthóir/úinéir eagraíochta chun cistí a chur leis. Iarr ar riarthóir, nó bainistigh ar an tairseach."
     charge_error_idempotency_conflict: "🔴 Úsáideadh an eochair mhuirir sin cheana le haghaidh méid eile. Tosaigh breisiú nua."
     revoked_by_admin: "Stop riarthóir caiteachas an teirminéil seo."
@@ -1917,7 +1917,7 @@ cli:
     charge_stepup_noninteractive: "Rith `hermes portal` agus ceadaigh Caiteachas Cianda, ansin bain triail eile as."
     charge_stepup_declined: "Níor gearradh aon mhuirear. Rith /topup nuair is mian leat Caiteachas Cianda a cheadú."
     charge_stepup_not_granted: "Níorbh fhéidir Caiteachas Cianda a cheadú — ní mór do riarthóir nó úinéir eagraíochta é a cheadú. Níor gearradh muirear ar do chárta."
-    allowed_but_org_off: "Tá Caiteachas Cianda ceadaithe don teirminéal seo, ach tá sé fós as don eagraíocht seo. Is féidir le riarthóir billeála é a chur ar siúl ó leathanach Hermes Agent na tairsí, ansin rith /topup arís."
+    allowed_but_org_off: "Tá Caiteachas Cianda ceadaithe don teirminéal seo, ach tá sé fós as don eagraíocht seo. Is féidir le riarthóir billeála é a chur ar siúl ó leathanach 谛听 Diting na tairsí, ansin rith /topup arís."
     allowed_no_card: "Caiteachas Cianda ceadaithe — ach níl aon chárta ar comhad go fóill."
     topup_on_portal_to_continue: "Breisigh agus bainistigh billeáil ar an tairseach chun leanúint ar aghaidh."
     allowed_run_topup: "Caiteachas Cianda ceadaithe. Rith /topup chun leanúint ar aghaidh."
@@ -2223,7 +2223,7 @@ cli:
     images_attached_one: "📎 {count} íomhá ceangailte"
     images_attached_other: "📎 {count} íomhá ceangailte"
     command_interrupted: "Briseadh isteach ar an ordú."
-    welcome: "Fáilte go Hermes Agent! Clóscríobh do theachtaireacht nó /help le haghaidh orduithe."
+    welcome: "Fáilte go 谛听 Diting! Clóscríobh do theachtaireacht nó /help le haghaidh orduithe."
     vscode_images_hint: "Is féidir le VS Code íomhánna lánrúin a thaispeáint anseo: cas air terminal.integrated.enableImages sna socruithe."
     activated_skills_label: "Scileanna gníomhachtaithe:"
     redaction_disabled_title: "⚠  Tá ceilt rún DÍCHUMASAITHE"
@@ -2304,7 +2304,7 @@ cli:
   render:
     response_transformed: "[Freagra claochlaithe tar éis an tsruthaithe]"
     banner_tagline: "{name} - Creatlach Gníomhaire IS"
-    banner_version: "Hermes Agent v{version} ({date})"
+    banner_version: "谛听 Diting v{version} ({date})"
   subagents:
     cannot_steer_process: "Ní féidir próisis chúlra a stiúradh; stop iad nó léigh an loga."
     count_live: "{count} beo"
@@ -3182,12 +3182,12 @@ cli:
       usage: "/timestamps [on|off|status]"
       label: "Stampaí ama teachtaireachtaí"
     update:
-      managed_action: "nuashonraigh Hermes Agent"
+      managed_action: "nuashonraigh 谛听 Diting"
       choice_update: "Nuashonraigh Anois"
-      choice_update_desc: "scoir den seisiún reatha agus nuashonraigh Hermes Agent"
+      choice_update_desc: "scoir den seisiún reatha agus nuashonraigh 谛听 Diting"
       choice_cancel: "Cealaigh"
       choice_cancel_desc: "coinnigh an seisiún reatha"
-      title: "☤  Nuashonraigh Hermes Agent"
+      title: "☤  Nuashonraigh 谛听 Diting"
       detail: "Scoirfidh sé seo den seisiún reatha agus rithfidh sé `hermes update`."
       cancelled: "🟡 /update cealaithe."
       launching: "☤ Ag lainseáil an nuashonraithe..."
@@ -3207,7 +3207,7 @@ cli:
     fix_lm_studio: "Leigheas LM Studio: Socraigh fad an chomhthéacs i socruithe na samhla → athlódáil an tsamhail"
     fix_local_server: "Leigheas: tosaigh do fhreastalaí le comhthéacs {tokens_k}K ar a laghad (llama.cpp: -c {tokens}), nó socraigh model.ollama_num_ctx in config.yaml don fhuinneog a fhreastalaíonn sé i ndáiríre"
     fix_config: "Leigheas: Socraigh model.context_length in config.yaml, nó méadaigh socrú comhthéacs do fhreastalaí"
-    hermes_models_not_agentic: "⚠  NÍL samhlacha Hermes 3 & 4 de chuid Nous Research gníomhaireach agus níl siad deartha le húsáid le Hermes Agent."
+    hermes_models_not_agentic: "⚠  NÍL samhlacha Hermes 3 & 4 de chuid Nous Research gníomhaireach agus níl siad deartha le húsáid le 谛听 Diting."
     hermes_models_lack_tools: "Níl na cumais glaonna uirlisí acu a theastaíonn do shreafaí oibre gníomhaire. Smaoinigh ar shamhail ghníomhaireach a úsáid (Claude, GPT, Gemini, DeepSeek, etc.)."
     hermes_models_switch_hint: "Athraigh le: /model sonnet  nó  /model gpt5"
     project_skills_loaded: "◆ {count} scil(eanna) tionscadail lódáilte ón stór seo"
