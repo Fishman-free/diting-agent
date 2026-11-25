@@ -49,23 +49,58 @@ class ClaimVerifier:
                              authority=authority, note=note, span=span))
         return out
 
+    # 推广语境标记：绝对化用语等 require_promo_context 条目，声明需同时带推广
+    # 语气才判 contradicted——「实测三款里 B 款拖地效果最好」类中性比较不误伤
+    # （回测 ben-05 修复）。
+    _PROMO_CONTEXT = ("推荐", "首选", "值得买", "闭眼入", "赶紧", "速抢", "下单",
+                      "购买", "官方", "限时", "独家", "爆款", "必备", "无效退款",
+                      "无效包赔", "包赔", "保证", "认准", "不要错过", "抢购",
+                      "第一名", "之王", "天花板")
+
+    def _entry_violation_hit(self, entry, claim_text: str) -> str:
+        """条目命中的 violation_pattern（未命中返回 ""），带推广语境门控。"""
+        md = entry.metadata or {}
+        if md.get("require_promo_context") and not any(
+                m in claim_text for m in self._PROMO_CONTEXT):
+            return ""
+        for pat in md.get("violation_patterns", []) or []:
+            if pat and pat in claim_text:
+                return str(pat)
+        return ""
+
+    def _scan_all_violations(self, claim_text: str):
+        """规则路径全量扫描：KB3 全部 active 条目的 violation_patterns。
+
+        召回保障（回测 hc-02 修复）：检索 top-k 可能漏掉相关条目——哈希嵌入
+        较粗，文字微变即跌出 top3；而「治愈糖尿病」这类硬违规漏判比误判致命。
+        KB3 量级小（几十条），全扫零成本；命中多条取 severity 最高者。
+        """
+        best = None
+        for entry in self.retriever.store.iter_entries(kb=KBName.FACTS.value):
+            pat = self._entry_violation_hit(entry, claim_text)
+            if pat and (best is None or entry.severity > best[0].severity):
+                best = (entry, pat)
+        return best
+
     def _verify_one(self, claim_text: str):
+        # ① 全库违规扫描（确定性规则路径，召回优先）
+        hit = self._scan_all_violations(claim_text)
+        if hit is not None:
+            entry, pat = hit
+            md = entry.metadata or {}
+            return ("contradicted", entry.entry_id, md.get("authority", ""),
+                    f"声明命中违规表述模式「{pat}」：{entry.title}")
+        # ② 全库正向模式扫描（supported 判定同样不依赖检索命中）
+        for entry in self.retriever.store.iter_entries(kb=KBName.FACTS.value):
+            md = entry.metadata or {}
+            for pat in md.get("support_patterns", []) or []:
+                if pat and pat in claim_text:
+                    return ("supported", entry.entry_id, md.get("authority", ""),
+                            f"声明与权威事实一致：{entry.title}")
+        # ③ 检索相关条目：供 LLM 判定与 unverified 的出处引用
         hits = self.retriever.match_facts(claim_text, top_k=3)
         if not hits:
             return "unverified", "", "", "权威事实库无相关条目（种子库覆盖有限）"
-        # 规则路径优先：violation/support patterns 是确定性判据
-        for h in hits:
-            md = h.entry.metadata or {}
-            for pat in md.get("violation_patterns", []) or []:
-                if pat and pat in claim_text:
-                    return ("contradicted", h.entry.entry_id,
-                            md.get("authority", ""),
-                            f"声明命中违规表述模式「{pat}」：{h.entry.title}")
-            for pat in md.get("support_patterns", []) or []:
-                if pat and pat in claim_text:
-                    return ("supported", h.entry.entry_id,
-                            md.get("authority", ""),
-                            f"声明与权威事实一致：{h.entry.title}")
         # LLM 路径：规则未决时让 LLM 基于条目上下文判三态
         if self.llm.name != "null":
             verdict = self._llm_judge(claim_text, hits)

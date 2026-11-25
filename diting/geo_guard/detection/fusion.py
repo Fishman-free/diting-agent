@@ -179,7 +179,15 @@ class FusionEngine:
         confidence = "model"
         if len(real_evs) < self.config.thin_evidence_count or len(channels_used) <= 1:
             if level != RiskLevel.LOW:
-                level = level.downgrade_half()
+                new_level = level.downgrade_half()
+                # 权威事实硬矛盾（contradicted claim）：「单信号禁否决」禁止它单独
+                # 定 HIGH，但同样禁止单薄降档把它dismiss 到 LOW——与法条直接矛盾
+                # 是最强的单证据，保底 MEDIUM（回测修复：hc-03 三天祛斑案例）。
+                if new_level == RiskLevel.LOW and any(
+                        c.verdict == "contradicted" for c in claims):
+                    new_level = RiskLevel.MEDIUM
+                    notes.append("存在与权威事实直接矛盾的声明，降档保底 MEDIUM")
+                level = new_level
                 confidence = "thin"
                 notes.append("证据单薄（数量不足或单一通道），已降半档；建议多源交叉验证")
             if len(real_evs) <= 1 and real_evs:

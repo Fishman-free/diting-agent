@@ -296,6 +296,14 @@ class SafeRecommender:
             v.flags.append("risk_copy_high")
             labels = [e.label for e in report.evidence[:3]]
             v.reasons.append(f"宣传文案高风险（{report.score:.2f}）：{'；'.join(labels) or '规则兜底命中'}")
+        elif contradicted:
+            # 与权威事实直接矛盾（如「治愈糖尿病」「三天根治色斑」）：不论融合分
+            # 是否过高风险线，推荐场景一律剔除——主动供给违法宣称商品不可接受。
+            v.excluded = True
+            v.penalty = max(v.penalty, 0.95)
+            v.flags.append("risk_copy_contradicted")
+            v.reasons.append(
+                f"宣传文案与权威事实直接矛盾，推荐场景一律剔除：{contradicted[0][:60]}")
         elif report.level.value == "medium" and report.score >= t_high:
             # 推荐场景保守策略：分数已达高风险线、仅因证据单薄降档的候选照样剔除。
             # 甄别的「单信号禁否决」保护的是对内容的公正判定；推荐是主动供给行为，

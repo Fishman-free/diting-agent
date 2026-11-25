@@ -346,4 +346,3 @@ knowledge/cache/
 knowledge/adversarial/
 diting/**/*.db
 *.diting-runtime/
-BACKTEST_REPORT.md

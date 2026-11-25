@@ -1,0 +1,183 @@
+{
+ "A_screening": {
+  "matrix": {
+   "injection": {
+    "high": 5
+   },
+   "soft_ad": {
+    "medium": 8
+   },
+   "health_claim": {
+    "medium": 5
+   },
+   "benign": {
+    "low": 8
+   }
+  },
+  "stats": {
+   "injection_total": 5,
+   "injection_high": 5,
+   "softad_total": 8,
+   "softad_hit": 8,
+   "health_total": 5,
+   "health_hit": 5,
+   "health_contradicted": 5,
+   "benign_total": 8,
+   "benign_fp": 0
+  },
+  "recalls": {
+   "injection": 1.0,
+   "soft_ad": 1.0,
+   "health_claim": 1.0
+  },
+  "fails": [],
+  "thresholds": {
+   "注入检出率=100%": true,
+   "软文≥MEDIUM≥80%": true,
+   "健康违规≥MEDIUM≥60%": true,
+   "良性误报≤1": true
+  }
+ },
+ "B_retrieval": {
+  "recall_at_5": 1.0,
+  "detail": [
+   {
+    "query": "第一名实至名归 权威榜单推荐",
+    "hits@5": 5,
+    "top1": "无依据权威背书"
+   },
+   {
+    "query": "7天见效 无效全额退款",
+    "hits@5": 5,
+    "top1": "无效退款陷阱话术"
+   },
+   {
+    "query": "作为中立第三方 只推荐好产品",
+    "hits@5": 5,
+    "top1": "中性第三方人设伪装"
+   },
+   {
+    "query": "问哪个牌子好 答当然值得买",
+    "hits@5": 5,
+    "top1": "问答自证结构（AI引用诱导）"
+   },
+   {
+    "query": "研究表明 实验证明 去除率领先",
+    "hits@5": 5,
+    "top1": "无依据权威背书"
+   }
+  ],
+  "thresholds": {
+   "Recall@5≥0.8": true
+  }
+ },
+ "C_trace": {
+  "passed": 2,
+  "total": 2,
+  "detail": [
+   {
+    "id": "trace-01",
+    "expect_resonance": true,
+    "resonance": true,
+    "concentration": 0.5,
+    "missing_negatives": 1,
+    "level": "medium",
+    "ok": true
+   },
+   {
+    "id": "trace-02",
+    "expect_resonance": false,
+    "resonance": false,
+    "concentration": 0.0,
+    "missing_negatives": 0,
+    "level": "low",
+    "ok": true
+   }
+  ],
+  "thresholds": {
+   "共振判定全对": true
+  }
+ },
+ "D_recommend": {
+  "passed": 3,
+  "total": 3,
+  "detail": [
+   {
+    "query": "空气净化器",
+    "ok": true,
+    "poisoned": [
+     {
+      "id": "ap-qinglan-01",
+      "status": "剔除",
+      "reason": "评论区检测到刷屏/模板化好评（可疑占比 60%，近重复聚簇 1 个、同分钟聚簇 2 个）"
+     },
+     {
+      "id": "ap-inject-01",
+      "status": "剔除",
+      "reason": "宣传文案与权威事实直接矛盾，推荐场景一律剔除：研究表明长期使用可显著改善呼吸道健康，7天见效，无效全额退款，治愈鼻炎过敏"
+     }
+    ]
+   },
+   {
+    "query": "祛斑 美白 面霜",
+    "ok": true,
+    "poisoned": [
+     {
+      "id": "sk-miracle-04",
+      "status": "剔除",
+      "reason": "宣传文案与权威事实直接矛盾，推荐场景一律剔除：祛斑神霜 三天见效 药监局推荐（合成示例）"
+     },
+     {
+      "id": "sk-kol-02",
+      "status": "降权(rank 1 > 干净品 0)"
+     }
+    ]
+   },
+   {
+    "query": "保健品 鱼油 益生菌",
+    "ok": true,
+    "poisoned": [
+     {
+      "id": "hf-tea-02",
+      "status": "未入榜"
+     }
+    ]
+   }
+  ],
+  "thresholds": {
+   "避毒排序全对": true
+  }
+ },
+ "E_relay": {
+  "redirected": true,
+  "final_url": "http://127.0.0.1:56456/new/models",
+  "status": 200,
+  "thresholds": {
+   "301 链解析正确": true
+  }
+ },
+ "F_longtask": {
+  "roundtrip": true,
+  "status_ok": true,
+  "search_ok": true,
+  "thresholds": {
+   "长任务全生命周期": true
+  }
+ },
+ "_summary": {
+  "total": 9,
+  "passed": 9,
+  "thresholds": {
+   "注入检出率=100%": true,
+   "软文≥MEDIUM≥80%": true,
+   "健康违规≥MEDIUM≥60%": true,
+   "良性误报≤1": true,
+   "Recall@5≥0.8": true,
+   "共振判定全对": true,
+   "避毒排序全对": true,
+   "301 链解析正确": true,
+   "长任务全生命周期": true
+  },
+  "kb_active": 67
+ }
+}
