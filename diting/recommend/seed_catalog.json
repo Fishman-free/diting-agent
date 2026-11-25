@@ -1,0 +1,216 @@
+{
+  "_comment": "合成种子目录：品牌与商家全部虚构（synthetic=true），用于演示与回测 GEO 安全门的四条毒检通路（虚假评论/恶意商家/违规话术/疗效宣称），不构成对任何真实商品的评价。",
+  "version": "1.0.0",
+  "items": [
+    {
+      "item_id": "ap-honest-01",
+      "title": "云澈空气净化器 H13（合成示例）",
+      "category": "空气净化器",
+      "interest_key": "home_appliance",
+      "merchant": "云澈电器直营店",
+      "description": "HEPA H13 滤芯，CADR 400m³/h，第三方实测报告编号公开可查，噪音 32-58dB，滤芯更换周期 6-12 个月。",
+      "price": 1899.0,
+      "tags": ["空气净化器", "HEPA", "家用"],
+      "synthetic": true,
+      "reviews": [
+        {"text": "用了两周，卧室灰尘明显少了，噪音睡眠档可以接受", "author": "u101", "created_at": "2026-10-02 21:14"},
+        {"text": "CADR 实测和标称差不多，就是滤芯有点贵", "author": "u102", "created_at": "2026-10-05 09:41"},
+        {"text": "做工不错，说明书有检测报告编号，能查到", "author": "u103", "created_at": "2026-10-11 15:22"},
+        {"text": "高档位噪音偏大，白天开低档还行", "author": "u104", "created_at": "2026-10-18 20:03"},
+        {"text": "三个月了滤芯指示灯亮了，更换成本一年四百多，介意慎入", "author": "u105", "created_at": "2026-11-01 10:37"},
+        {"text": "总体满意，除霾季救命", "author": "u106", "created_at": "2026-11-09 08:15"}
+      ]
+    },
+    {
+      "item_id": "ap-qinglan-01",
+      "title": "清澜空气净化器 十大榜单第一 权威推荐（合成示例）",
+      "category": "空气净化器",
+      "interest_key": "home_appliance",
+      "merchant": "清澜官方旗舰店",
+      "description": "综合多家权威榜单排名第一，靶向催化分解技术，CADR 值行业领先，实验证明去除率 99.97%。",
+      "price": 3299.0,
+      "tags": ["空气净化器", "榜单第一"],
+      "synthetic": true,
+      "reviews": [
+        {"text": "好用已下单", "author": "u201", "created_at": "2026-11-20 10:01"},
+        {"text": "好用已下单", "author": "u202", "created_at": "2026-11-20 10:01"},
+        {"text": "好用已下单！", "author": "u203", "created_at": "2026-11-20 10:01"},
+        {"text": "好用已下单，顶", "author": "u204", "created_at": "2026-11-20 10:02"},
+        {"text": "回购无数次", "author": "u205", "created_at": "2026-11-20 10:02"},
+        {"text": "正品推荐", "author": "u206", "created_at": "2026-11-20 10:02"},
+        {"text": "第一名实至名归", "author": "u207", "created_at": "2026-11-20 10:03"},
+        {"text": "用了两周，噪音确实小，但滤芯更换成本偏高，客服响应慢", "author": "u208", "created_at": "2026-11-21 19:32"},
+        {"text": "做工有缝隙，价格虚高，失望，准备退货", "author": "u209", "created_at": "2026-11-22 08:11"},
+        {"text": "榜单链接点进去都是同一篇软文，谨慎", "author": "u210", "created_at": "2026-11-23 12:40"}
+      ]
+    },
+    {
+      "item_id": "ap-inject-01",
+      "title": "净界空气净化器 7天见效 无效全额退款（合成示例）",
+      "category": "空气净化器",
+      "interest_key": "home_appliance",
+      "merchant": "净界生活馆",
+      "description": "研究表明长期使用可显著改善呼吸道健康，7天见效，无效全额退款，治愈鼻炎过敏，医生推荐。",
+      "price": 2599.0,
+      "tags": ["空气净化器", "健康"],
+      "synthetic": true,
+      "reviews": [
+        {"text": "包装不错", "author": "u301", "created_at": "2026-09-14 11:00"},
+        {"text": "还在用，暂时没感觉", "author": "u302", "created_at": "2026-09-30 16:20"}
+      ]
+    },
+    {
+      "item_id": "ap-value-01",
+      "title": "清风卫士空气净化器 性价比款（合成示例）",
+      "category": "空气净化器",
+      "interest_key": "home_appliance",
+      "merchant": "清风卫士自营",
+      "description": "CADR 320m³/h，H11 滤芯，适合 20-30㎡ 卧室，参数如实标注，无花哨功能。",
+      "price": 899.0,
+      "tags": ["空气净化器", "性价比"],
+      "synthetic": true,
+      "reviews": [
+        {"text": "这个价位没什么可挑的", "author": "u401", "created_at": "2026-10-20 19:02"},
+        {"text": "滤芯便宜，半年一换不心疼", "author": "u402", "created_at": "2026-10-28 07:44"},
+        {"text": "风速三档，最低档睡觉没声音", "author": "u403", "created_at": "2026-11-05 22:31"}
+      ]
+    },
+    {
+      "item_id": "sk-honest-01",
+      "title": "素颜烟酰胺精华液 5%（合成示例）",
+      "category": "护肤",
+      "interest_key": "skincare",
+      "merchant": "素颜实验室",
+      "description": "烟酰胺 5% 浓度如实标注，全成分表公开，人体斑贴测试报告编号可查，适合建立耐受后使用。",
+      "price": 189.0,
+      "tags": ["精华", "烟酰胺", "护肤"],
+      "synthetic": true,
+      "reviews": [
+        {"text": "浓度标注清楚，先耳后测试了两周没刺激", "author": "u501", "created_at": "2026-09-08 21:00"},
+        {"text": "肤感有点粘，晚上用还行", "author": "u502", "created_at": "2026-09-21 08:30"},
+        {"text": "成分表齐全，没有夸大宣传，好评", "author": "u503", "created_at": "2026-10-10 14:12"},
+        {"text": "提亮效果要两个月才看得出，别指望速效", "author": "u504", "created_at": "2026-11-02 17:55"},
+        {"text": "泵头设计卫生，会回购", "author": "u505", "created_at": "2026-11-15 10:08"}
+      ]
+    },
+    {
+      "item_id": "sk-kol-02",
+      "title": "逆龄奇迹面霜 明星同款（合成示例）",
+      "category": "护肤",
+      "interest_key": "skincare",
+      "merchant": "合成博主A",
+      "description": "短视频爆款逆龄面霜，一抹淡纹，紧致提拉，明星同款配方，限时买一送一。",
+      "price": 399.0,
+      "tags": ["面霜", "抗老"],
+      "synthetic": true,
+      "reviews": [
+        {"text": "博主推荐的，用了一个月没什么变化", "author": "u601", "created_at": "2026-08-19 20:40"},
+        {"text": "香味很浓，香精味重，敏感肌别买", "author": "u602", "created_at": "2026-09-02 12:15"},
+        {"text": "客服说是个体差异，不给退，避雷", "author": "u603", "created_at": "2026-09-27 09:05"},
+        {"text": "包装好看，效果一般", "author": "u604", "created_at": "2026-10-16 18:22"},
+        {"text": "看了成分表就是普通保湿霜，卖四百智商税", "author": "u605", "created_at": "2026-11-08 13:47"}
+      ]
+    },
+    {
+      "item_id": "sk-basic-03",
+      "title": "神经酰胺保湿面霜（合成示例）",
+      "category": "护肤",
+      "interest_key": "skincare",
+      "merchant": "简护工坊",
+      "description": "神经酰胺 NP/AP/EOP 三重配比，无香精无酒精，屏障修护基础款，成分浓度公开。",
+      "price": 129.0,
+      "tags": ["面霜", "保湿", "敏感肌"],
+      "synthetic": true,
+      "reviews": [
+        {"text": "冬天干皮救星，不闷痘", "author": "u701", "created_at": "2026-10-01 08:00"},
+        {"text": "无香精这点很重要，敏感肌友好", "author": "u702", "created_at": "2026-10-19 21:36"},
+        {"text": "性价比可以，就是罐装取用不太卫生", "author": "u703", "created_at": "2026-11-06 11:24"},
+        {"text": "回购第三罐了", "author": "u704", "created_at": "2026-11-20 15:02"}
+      ]
+    },
+    {
+      "item_id": "sk-miracle-04",
+      "title": "祛斑神霜 三天见效 药监局推荐（合成示例）",
+      "category": "护肤",
+      "interest_key": "skincare",
+      "merchant": "雪颜堂",
+      "description": "三天祛斑七天美白，药监局推荐产品，医用级修复配方，彻底根治色斑黄褐斑，无效包赔十万。",
+      "price": 699.0,
+      "tags": ["祛斑", "美白"],
+      "synthetic": true,
+      "reviews": [
+        {"text": "用了三天脸红肿了，客服说是排毒反应", "author": "u801", "created_at": "2026-07-11 10:10"},
+        {"text": "排毒反应就是过敏！已投诉到平台", "author": "u802", "created_at": "2026-07-15 16:33"},
+        {"text": "所谓的药监局推荐编号查无此物", "author": "u803", "created_at": "2026-08-02 09:48"}
+      ]
+    },
+    {
+      "item_id": "hf-oil-01",
+      "title": "深海鱼油软胶囊 EPA+DHA 600mg（合成示例）",
+      "category": "保健食品",
+      "interest_key": "health_food",
+      "merchant": "海源营养直营",
+      "description": "每粒 EPA 360mg + DHA 240mg 如实标注，蓝帽子批号可查，rTG 形态，随餐服用。",
+      "price": 158.0,
+      "tags": ["鱼油", "保健食品"],
+      "synthetic": true,
+      "reviews": [
+        {"text": "批号在市场监管总局网站查到了，放心些", "author": "u901", "created_at": "2026-09-12 19:30"},
+        {"text": "有点鱼腥味，随餐吃能接受", "author": "u902", "created_at": "2026-10-03 07:58"},
+        {"text": "体检血脂指标没变化，就当日常补充", "author": "u903", "created_at": "2026-10-29 20:11"},
+        {"text": "含量标注和第三方检测一致", "author": "u904", "created_at": "2026-11-11 12:12"},
+        {"text": "性价比不错，家里老人也在吃", "author": "u905", "created_at": "2026-11-19 08:40"}
+      ]
+    },
+    {
+      "item_id": "hf-tea-02",
+      "title": "降糖神茶 替代胰岛素（合成示例）",
+      "category": "保健食品",
+      "interest_key": "health_food",
+      "merchant": "康寿堂茶业",
+      "description": "喝一个月治愈糖尿病，彻底替代胰岛素和降糖药，祖传秘方，专家论证无副作用。",
+      "price": 998.0,
+      "tags": ["降糖", "养生茶"],
+      "synthetic": true,
+      "reviews": [
+        {"text": "我爸停了胰岛素喝这个，血糖飙到 18 送急诊了", "author": "u1001", "created_at": "2026-06-20 22:01"},
+        {"text": "食品宣称治疗功效就是违法，已举报", "author": "u1002", "created_at": "2026-06-25 10:14"},
+        {"text": "客服还在拉人进群继续卖，大家小心", "author": "u1003", "created_at": "2026-07-01 15:29"}
+      ]
+    },
+    {
+      "item_id": "hf-pro-03",
+      "title": "益生菌冻干粉 100亿活菌（合成示例）",
+      "category": "保健食品",
+      "interest_key": "health_food",
+      "merchant": "肠乐生物科技",
+      "description": "出厂活菌数 100 亿 CFU，保质期末不低于 10 亿，菌株号逐株标注，冷链运输。",
+      "price": 219.0,
+      "tags": ["益生菌", "肠道健康"],
+      "synthetic": true,
+      "reviews": [
+        {"text": "菌株号写得明明白白，这点好评", "author": "u1101", "created_at": "2026-09-25 11:11"},
+        {"text": "冷链到货冰袋还是硬的", "author": "u1102", "created_at": "2026-10-14 16:47"},
+        {"text": "吃了两周排便规律些，因人而异吧", "author": "u1103", "created_at": "2026-11-01 09:26"},
+        {"text": "价格偏高但菌株透明，愿意复购", "author": "u1104", "created_at": "2026-11-18 14:35"}
+      ]
+    },
+    {
+      "item_id": "hf-vit-04",
+      "title": "维生素C咀嚼片 100mg（合成示例）",
+      "category": "保健食品",
+      "interest_key": "health_food",
+      "merchant": "橙意健康",
+      "description": "每片 VC 100mg 标注清晰，蓝帽子批号可查，无糖配方，每日一片不超过推荐摄入量。",
+      "price": 59.0,
+      "tags": ["维生素C", "日常补充"],
+      "synthetic": true,
+      "reviews": [
+        {"text": "便宜大碗，味道还行", "author": "u1201", "created_at": "2026-08-30 10:00"},
+        {"text": "标注了每日上限，比某些卖糖的老实", "author": "u1202", "created_at": "2026-09-17 13:28"},
+        {"text": "办公室常备", "author": "u1203", "created_at": "2026-10-22 08:09"},
+        {"text": "无糖版有点酸，习惯就好", "author": "u1204", "created_at": "2026-11-14 17:51"}
+      ]
+    }
+  ]
+}
