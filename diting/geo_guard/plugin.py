@@ -41,6 +41,64 @@ def _tool(name: str, description: str, properties: Dict[str, Any],
     }
 
 
+def build_tool_schemas() -> List[Dict[str, Any]]:
+    """模块级 schema 构建（Diting fork 重构：不依赖实例状态，宿主插件注册时
+    无需实例化整个内核——避免注册阶段加载知识库/嵌入）。"""
+    return [
+        _tool("screen_content",
+              "甄别一段内容（网页正文/带货话术/测评文案/评论列表）是否为 GEO 投毒或虚假宣传，"
+              "输出三档风险、证据链与建议追问。",
+              {"text": {"type": "string", "description": "待甄别文本"},
+               "source_meta": {"type": "object",
+                               "description": "可选来源元数据：domain/author/published_at/url/reuse_count"},
+               "comments": {"type": "array", "items": {"type": "object"},
+                            "description": "可选评论列表：[{text, author?, created_at?}]"},
+               "subject": {"type": "string", "description": "可选：甄别对象主体名"}},
+              ["text"]),
+        _tool("trace_ai_answer",
+              "逆向回溯一条 AI 生成的回答：判断其推荐是否被 GEO 内容网络牵引，"
+              "输出逐源风险、话术共振度与被过滤的反面证据。",
+              {"answer_text": {"type": "string", "description": "AI 回答原文"},
+               "cited_sources": {"type": "array", "items": {"type": "object"},
+                                 "description": "引用源列表：[{title?, url?, snippet|text}]"}},
+              ["answer_text", "cited_sources"]),
+        _tool("verify_claims",
+              "对文本做事实核验：抽取事实性声明（功效/资质/数据/对比），"
+              "与权威事实库比对，输出 supported/contradicted/unverified 三态。",
+              {"text": {"type": "string"}}, ["text"]),
+        _tool("check_influencer",
+              "查询博主信用档案：历史推广频率、违规/翻车记录与信用评分。",
+              {"name": {"type": "string", "description": "博主名"},
+               "history_summary": {"type": "string", "description": "可选：历史内容摘要"}},
+              ["name"]),
+        _tool("recall_memory",
+              "语义召回用户的长期记忆（历史甄别结论、偏好事件），带时间衰减排序。",
+              {"query": {"type": "string"},
+               "kinds": {"type": "array", "items": {"type": "string"},
+                         "description": "可选过滤：screening/feedback/preference/event"}},
+              ["query"]),
+        _tool("remember",
+              "把一条有长期价值的信息写入用户情景记忆（偏好声明、甄别结论、关键事件）。",
+              {"content": {"type": "string"},
+               "kind": {"type": "string", "enum": ["screening", "feedback", "preference", "event"]},
+               "subject": {"type": "string"},
+               "importance": {"type": "number"}},
+              ["content", "kind"]),
+        _tool("suggest_actions",
+              "按风险等级与平台检索维权行动路径：申诉入口、所需材料、时限提示（来自平台规则库）。",
+              {"risk_level": {"type": "string", "enum": ["high", "medium", "low"]},
+               "platform": {"type": "string", "description": "如 generic_ecommerce/short_video/travel"},
+               "topic": {"type": "string"}},
+              ["risk_level"]),
+        _tool("give_feedback",
+              "提交用户对判定结果的认同/异议。异议进入复核队列并驱动知识库复审。",
+              {"report_id": {"type": "string"},
+               "verdict": {"type": "string", "enum": ["agree", "dispute"]},
+               "note": {"type": "string"}},
+              ["report_id", "verdict"]),
+    ]
+
+
 class GeoGuardPlugin:
     """8 工具插件面。所有工具返回 JSON 可序列化 dict。"""
 
@@ -64,59 +122,7 @@ class GeoGuardPlugin:
     # ---------------- schema ----------------
 
     def tool_schemas(self) -> List[Dict[str, Any]]:
-        return [
-            _tool("screen_content",
-                  "甄别一段内容（网页正文/带货话术/测评文案/评论列表）是否为 GEO 投毒或虚假宣传，"
-                  "输出三档风险、证据链与建议追问。",
-                  {"text": {"type": "string", "description": "待甄别文本"},
-                   "source_meta": {"type": "object",
-                                   "description": "可选来源元数据：domain/author/published_at/url/reuse_count"},
-                   "comments": {"type": "array", "items": {"type": "object"},
-                                "description": "可选评论列表：[{text, author?, created_at?}]"},
-                   "subject": {"type": "string", "description": "可选：甄别对象主体名"}},
-                  ["text"]),
-            _tool("trace_ai_answer",
-                  "逆向回溯一条 AI 生成的回答：判断其推荐是否被 GEO 内容网络牵引，"
-                  "输出逐源风险、话术共振度与被过滤的反面证据。",
-                  {"answer_text": {"type": "string", "description": "AI 回答原文"},
-                   "cited_sources": {"type": "array", "items": {"type": "object"},
-                                     "description": "引用源列表：[{title?, url?, snippet|text}]"}},
-                  ["answer_text", "cited_sources"]),
-            _tool("verify_claims",
-                  "对文本做事实核验：抽取事实性声明（功效/资质/数据/对比），"
-                  "与权威事实库比对，输出 supported/contradicted/unverified 三态。",
-                  {"text": {"type": "string"}}, ["text"]),
-            _tool("check_influencer",
-                  "查询博主信用档案：历史推广频率、违规/翻车记录与信用评分。",
-                  {"name": {"type": "string", "description": "博主名"},
-                   "history_summary": {"type": "string", "description": "可选：历史内容摘要"}},
-                  ["name"]),
-            _tool("recall_memory",
-                  "语义召回用户的长期记忆（历史甄别结论、偏好事件），带时间衰减排序。",
-                  {"query": {"type": "string"},
-                   "kinds": {"type": "array", "items": {"type": "string"},
-                             "description": "可选过滤：screening/feedback/preference/event"}},
-                  ["query"]),
-            _tool("remember",
-                  "把一条有长期价值的信息写入用户情景记忆（偏好声明、甄别结论、关键事件）。",
-                  {"content": {"type": "string"},
-                   "kind": {"type": "string", "enum": ["screening", "feedback", "preference", "event"]},
-                   "subject": {"type": "string"},
-                   "importance": {"type": "number"}},
-                  ["content", "kind"]),
-            _tool("suggest_actions",
-                  "按风险等级与平台检索维权行动路径：申诉入口、所需材料、时限提示（来自平台规则库）。",
-                  {"risk_level": {"type": "string", "enum": ["high", "medium", "low"]},
-                   "platform": {"type": "string", "description": "如 generic_ecommerce/short_video/travel"},
-                   "topic": {"type": "string"}},
-                  ["risk_level"]),
-            _tool("give_feedback",
-                  "提交用户对判定结果的认同/异议。异议进入复核队列并驱动知识库复审。",
-                  {"report_id": {"type": "string"},
-                   "verdict": {"type": "string", "enum": ["agree", "dispute"]},
-                   "note": {"type": "string"}},
-                  ["report_id", "verdict"]),
-        ]
+        return build_tool_schemas()
 
     # ---------------- dispatch ----------------
 
