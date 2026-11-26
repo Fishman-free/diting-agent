@@ -56,6 +56,7 @@ import {
   voiceFieldVisible
 } from './helpers'
 import { MemoryConnect } from './memory/connect'
+import { DitingMemorySlot } from './memory/diting-memory-panel'
 import { MemoryLayersSlot } from './memory/memory-layers'
 import { ProviderConfigPanel } from './memory/provider-config-panel'
 import { ModelSettings, ModelSettingsSkeleton } from './model-settings'
@@ -525,6 +526,8 @@ function ConfigSettingsInner({
         sectionId={activeSectionId}
         subpage={subpage}
       />
+      {/* 谛听画像与长程记忆：与 hermes diting profile/memory CLI 同源数据。 */}
+      <DitingMemorySlot profile={scopeProfile} sectionId={activeSectionId} subpage={subpage} />
       {/* Routing picks the strategy and owns its routes; the subagent model row below is the
           Default strategy's route and goes inert while another strategy decides. */}
       <DelegationRoutingSlot

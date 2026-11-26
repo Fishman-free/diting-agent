@@ -7,10 +7,10 @@ export const arChat = {
     switchingProfileSlow: 'لا يزال الاتصال جاريًا. الرسائل التي ترسلها الآن ستنتظر ثم تُرسل إلى هذا الوكيل.',
     switchProfileFailed: profile => `تعذّر التبديل إلى ${profile}`,
     willSendTo: profile => `سيُرسل إلى ${profile}`,
-    placeholderStarting: 'جار بدء Hermes...',
+    placeholderStarting: 'جار بدء Diting...',
     placeholderReconnecting: 'جار إعادة الاتصال...',
     placeholderFollowUp: 'اكتب متابعة...',
-    newSessionPlaceholders: ['اسأل Hermes عن شيء...', 'اطلب من Hermes تنفيذ مهمة...', 'ابدأ محادثة جديدة...'],
+    newSessionPlaceholders: ['اسأل Diting عن شيء...', 'اطلب من Diting تنفيذ مهمة...', 'ابدأ محادثة جديدة...'],
     followUpPlaceholders: ['اكتب متابعة...', 'أضف توجيها...', 'اسأل سؤالا آخر...'],
     startVoice: 'بدء الصوت',
     openDirective: 'فتح',
@@ -70,7 +70,7 @@ export const arChat = {
       '/journey': 'فتح رسم الذاكرة لعرض المهارات والذكريات عبر الزمن',
       '/queue': 'إضافة طلبات للدور التالي أو عرضها أو تعديلها أو حذفها أو نقلها أو مسحها',
       '/steer': 'إدراج رسالة بعد استدعاء الأداة التالي دون مقاطعة العمل',
-      '/goal': 'تحديد هدف مستمر يعمل عليه Hermes حتى إنجازه',
+      '/goal': 'تحديد هدف مستمر يعمل عليه Diting حتى إنجازه',
       '/heartbeat': 'تحديد طلب متكرر يعود إلى هذه الجلسة عندما تكون خاملة',
       '/refine': 'مراجعة هذه المحادثة وحفظ الدروس في الذاكرة أو المهارات',
       '/review': 'تشغيل وكيل فرعي مستقل لمراجعة العمل الذي نوقش',
@@ -82,7 +82,7 @@ export const arChat = {
       '/egress': 'عرض حالة وكيل الاتصالات الصادرة في Docker',
       '/context': 'عرض استخدام السياق وتفاصيله وإحصاءات الضغط ومعدل المعالجة',
       '/whoami': 'عرض صلاحية الوصول إلى أوامر الشرطة المائلة',
-      '/profile': 'تبديل ملف Hermes الشخصي النشط',
+      '/profile': 'تبديل ملف Diting الشخصي النشط',
       '/codex-runtime': 'تبديل بيئة Codex app-server لنماذج OpenAI/Codex',
       '/personality': 'اختيار شخصية محددة مسبقًا',
       '/battery': 'تبديل عرض مؤشر البطارية الملون في شريط الحالة',
@@ -109,7 +109,7 @@ export const arChat = {
       '/subscription': 'عرض خطة Nous وتغييرها في المتصفح',
       '/topup': 'عرض رصيد Nous وإدارة الفواتير',
       '/platform': 'إيقاف منصة بوابة متعثرة مؤقتًا أو استئنافها أو عرضها',
-      '/version': 'عرض إصدار Hermes Agent',
+      '/version': 'عرض إصدار 谛听 Diting',
       '/debug': 'تقرير تصحيح الأخطاء (الإصدارات وأسماء مفاتيح الإعداد وأعداد الأخطاء؛ دون نص السجلات): يعرض إشعار الخصوصية أولًا؛ /debug upload يشارك الروابط',
       '/model': 'تبديل نموذج هذه الجلسة'
     },
@@ -126,7 +126,7 @@ export const arChat = {
     attachUrlTitle: 'إرفاق رابط',
     attachUrlDesc: 'أضف رابطا إلى الرسالة.',
     urlPlaceholder: 'https://example.com',
-    urlHintPre: 'سيقرأ Hermes الرابط ضمن السياق.',
+    urlHintPre: 'سيقرأ Diting الرابط ضمن السياق.',
     attach: 'إرفاق',
     queued: count => `${count} في الطابور`,
     attachmentOnly: 'إرفاق فقط',
@@ -338,7 +338,7 @@ export const arChat = {
       createPr: 'إنشاء PR',
       openPr: 'فتح PR',
       ghMissing: 'ثبّت GitHub CLI (gh) وسجّل الدخول لفتح طلبات السحب',
-      agentShip: 'اطلب من Hermes فتح PR',
+      agentShip: 'اطلب من Diting فتح PR',
       agentShipUnavailable: 'المحادثة التي تملك هذه التغييرات ليست على الشاشة.',
       agentShipPrompt: 'راجع التغييرات الحالية، وأودعها برسالة إيداع تقليدية واضحة، وادفع الفرع، وافتح طلب سحب.',
       newBranch: 'فرع جديد',
@@ -372,7 +372,7 @@ export const arChat = {
     vaultSaveSendFailed: 'تعذر حفظ بيانات الدخول',
     vaultSaveTitle: site => `حفظ بيانات الدخول إلى ${site}؟`,
     vaultSaveDesc: origin =>
-      `وصل Hermes إلى صفحة تسجيل الدخول في ${origin} ولا توجد بيانات دخول محفوظة لها. أدخلها هنا مرة واحدة؛ تُشفَّر على هذا الجهاز وتُملأ في الصفحة مباشرة، ولا يرى النموذج كلمة المرور أبدًا.`,
+      `وصل Diting إلى صفحة تسجيل الدخول في ${origin} ولا توجد بيانات دخول محفوظة لها. أدخلها هنا مرة واحدة؛ تُشفَّر على هذا الجهاز وتُملأ في الصفحة مباشرة، ولا يرى النموذج كلمة المرور أبدًا.`,
     vaultSaveIdentifierLabel: 'البريد الإلكتروني أو اسم المستخدم',
     vaultSaveIdentifierPlaceholder: 'you@example.com',
     vaultSavePasswordPlaceholder: 'كلمة المرور',
@@ -382,10 +382,10 @@ export const arChat = {
     vaultCodeSendFailed: 'تعذر إرسال الرمز',
     vaultCodeTitle: site => `رمز التحقق لـ ${site}`,
     vaultCodeDesc: site =>
-      `يطلب ${site} رمزًا لمرة واحدة (رسالة نصية أو بريد إلكتروني أو تطبيق مصادقة). أدخله هنا وسيكتبه Hermes في الصفحة؛ لا يراه النموذج أبدًا.`,
+      `يطلب ${site} رمزًا لمرة واحدة (رسالة نصية أو بريد إلكتروني أو تطبيق مصادقة). أدخله هنا وسيكتبه Diting في الصفحة؛ لا يراه النموذج أبدًا.`,
     vaultCodeLabel: 'الرمز',
     vaultCodeFootnote:
-      'تلميح: احفظ مفتاح المصادقة مع بيانات الدخول هذه في الإعدادات ← كلمات المرور وتسجيلات الدخول وسيُدخل Hermes الرموز نيابةً عنك.',
+      'تلميح: احفظ مفتاح المصادقة مع بيانات الدخول هذه في الإعدادات ← كلمات المرور وتسجيلات الدخول وسيُدخل Diting الرموز نيابةً عنك.',
     vaultCodeSkip: 'تخطٍ',
     vaultCodeConfirm: 'إدخال الرمز'
   },
@@ -494,14 +494,14 @@ export const arChat = {
       },
       skills: {
         title: 'علّمه مرة واحدة',
-        text: 'المهارات مجلدات من التعليمات يحمّلها Hermes عندما يقتضي العمل ذلك.'
+        text: 'المهارات مجلدات من التعليمات يحمّلها Diting عندما يقتضي العمل ذلك.'
       },
       messaging: {
-        title: 'Hermes بعيدًا عن مكتبك',
+        title: 'Diting بعيدًا عن مكتبك',
         text: 'اربطه بـ Telegram وDiscord وSlack وغيرها — الوكيل نفسه والذاكرة نفسها.'
       },
       artifacts: {
-        title: 'كل ما صنعه Hermes',
+        title: 'كل ما صنعه Diting',
         text: 'الصور والملفات والروابط من كل الجلسات، مفهرسة في مكان واحد.'
       },
       cron: {
@@ -514,7 +514,7 @@ export const arChat = {
       },
       profiles: {
         title: 'الملفات الشخصية منفصلة',
-        text: 'كل واحد منها Hermes مستقل — مفاتيحه وذاكرته وجلساته الخاصة.'
+        text: 'كل واحد منها Diting مستقل — مفاتيحه وذاكرته وجلساته الخاصة.'
       },
       'composer-mentions': {
         title: 'المرفقات والأوامر',

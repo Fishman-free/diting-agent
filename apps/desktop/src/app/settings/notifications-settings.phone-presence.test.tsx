@@ -59,7 +59,7 @@ it('describes what it tells Hermes, without promising what a phone will do', asy
 
   expect(row()).toContain('This computer for phone notifications')
   expect(row()).toContain(
-    'What this window tells Hermes about you being here. A phone notification plugin decides what to do with it.'
+    'What this window tells Diting about you being here. A phone notification plugin decides what to do with it.'
   )
 })
 
@@ -81,7 +81,7 @@ it('with the OS idle clock, says Hermes is told when you last used this computer
   const row = await renderRow({ systemIdleSeconds: 4 })
 
   expect(row()).toContain(
-    'While a conversation is open in this window, Hermes is told when you last used this computer. Last input 4 sec ago.'
+    'While a conversation is open in this window, Diting is told when you last used this computer. Last input 4 sec ago.'
   )
 })
 
@@ -91,11 +91,11 @@ it('with page input only, says Hermes is told when you last used this window', a
   // No input seen yet: the row never invents one.
   act(() => void vi.advanceTimersByTime(10_000))
   expect(row()).toContain(
-    'While a conversation is open in this window, Hermes is told when you last used this window. No input seen yet.'
+    'While a conversation is open in this window, Diting is told when you last used this window. No input seen yet.'
   )
   expect(row()).not.toContain('Last input')
 
   window.document.dispatchEvent(new Event('pointerdown'))
   act(() => void vi.advanceTimersByTime(120_000))
-  expect(row()).toContain('Hermes is told when you last used this window. Last input 2 min ago.')
+  expect(row()).toContain('Diting is told when you last used this window. Last input 2 min ago.')
 })

@@ -16,7 +16,7 @@ describe('Backup & Transfer entry points', () => {
   it('lists exactly one ⌘K row per task', () => {
     expect(backupPaletteEntries(en).map(entry => [entry.id, entry.label])).toEqual([
       ['backup-agent', 'Back up this agent'],
-      ['transfer-to-cloud', 'Transfer to Hermes Cloud']
+      ['transfer-to-cloud', 'Transfer to Diting Cloud']
     ])
   })
 

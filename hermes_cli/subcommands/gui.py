@@ -9,7 +9,7 @@ def build_gui_parser(subparsers, *, cmd_gui: Callable) -> None:
     """Attach the ``gui`` subcommand to ``subparsers``."""
     gui_parser = subparsers.add_parser(
         "desktop", aliases=["gui"], help="Build and launch the native desktop app",
-        description="Launch the Hermes Electron desktop app. By default this installs "
+        description="Launch the 谛听 Diting Electron desktop app. By default this installs "
             "workspace Node dependencies, builds the current OS's unpacked "
             "Electron app, then launches that packaged artifact.")
     gui_parser.add_argument(

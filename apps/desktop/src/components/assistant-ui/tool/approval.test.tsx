@@ -577,7 +577,7 @@ describe('folder and site approval cards', () => {
     expect(respond).not.toHaveBeenCalled()
     const field = reasonField()
     expect(document.activeElement).toBe(field)
-    expect(field.placeholder).toBe('Tell Hermes why (optional)')
+    expect(field.placeholder).toBe('Tell Diting why (optional)')
     expect(field.maxLength).toBe(500)
     // While the field is open the card offers Cancel and Deny only.
     expect(screen.getAllByRole('button').map(button => button.textContent?.replace('↵', '').trim())).toEqual([

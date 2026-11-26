@@ -20,6 +20,7 @@ import type { ClarifyCopy } from './types_clarify'
 import type { ConnectorAccountsTranslations, ConnectorCardTranslations } from './types_connectors'
 import type { CronControlCopy } from './types_cron_control'
 import type { GatewayGroupOpenCopy, SkillDeepLinkCopy } from './types_deep_links'
+import type { DitingMemoryTranslations } from './types_diting_memory'
 import type { ExternalOpenFailedCopy } from './types_external_open'
 import type { FirstRunCopy } from './types_first_run'
 import type { GatewayHostTranslations } from './types_gateway_host'
@@ -939,6 +940,7 @@ export interface Translations extends NoticeTranslations {
     uninstallSection: UninstallSectionTranslations
     backup: BackupTransferTranslations
     memoryLayers: MemoryLayersTranslations
+    ditingMemory: DitingMemoryTranslations
     customEndpoints: {
       active: string
       apiKeySet: string
@@ -3486,7 +3488,7 @@ export interface Translations extends NoticeTranslations {
     }
     // First-launch set-up failure notice: the free tier could not be created at boot.
     // One sentence per backend code (`hermes_cli/anon_auth.py::ANON_*`); the copy never says
-    // the free MODEL is off — what is unavailable is using Hermes without signing in.
+    // the free MODEL is off — what is unavailable is using Diting without signing in.
     setupFailed: {
       gateClosed: string
       paused: string

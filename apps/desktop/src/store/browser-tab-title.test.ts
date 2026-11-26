@@ -101,10 +101,11 @@ describe('installBrowserTabTitle', () => {
     $selectedStoredSessionId.set('s1')
     uninstall = installBrowserTabTitle()
 
-    expect(document.title).toBe('Hermes')
+    expect(document.title).toBe('谛听 Diting')
   })
 
   it('leaves the native window title alone', () => {
+    document.title = 'Hermes'
     setSessions([row({ id: 's1', title: 'Fix login' })])
     $selectedStoredSessionId.set('s1')
     uninstall = installBrowserTabTitle()

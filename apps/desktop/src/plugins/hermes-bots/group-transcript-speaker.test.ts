@@ -28,7 +28,7 @@ const label = (entry: typeof remoteLine | typeof localLine, members: RosterRow[]
 describe('group transcript speaker', () => {
   it('names a seated remote default by its machine, the local one as Hermes', () => {
     expect(label(remoteLine, [localDefault, homelabDefault])).toBe('Homelab')
-    expect(label(localLine, [localDefault, homelabDefault])).toBe('Hermes')
+    expect(label(localLine, [localDefault, homelabDefault])).toBe('谛听')
   })
 
   it('keeps a removed remote member owner-qualified instead of reading as this device', () => {

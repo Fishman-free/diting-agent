@@ -10,6 +10,10 @@ import { parseLocalRuntimeVersion, resolveLocalRuntimeVersion, type VersionProbe
 describe('local client version source', (): void => {
   it('parses the exact version line emitted by the local launcher', (): void => {
     expect(parseLocalRuntimeVersion('Hermes Agent v0.21.5+6644.gb412ee9 (2026.9.24)\n')).toBe('0.21.5+6644.gb412ee9')
+    // [diting] 本 fork 的 CLI 打印「谛听 Diting v…」，同样必须解析出版本号
+    expect(parseLocalRuntimeVersion('谛听 Diting vgit.0f1b651.dirty (2026.9.24) · upstream 0f1b6514\n')).toBe(
+      'git.0f1b651.dirty'
+    )
     expect(parseLocalRuntimeVersion('gateway: v0.21.5+6634\n')).toBe('')
   })
 

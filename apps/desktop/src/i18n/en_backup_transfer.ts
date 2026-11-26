@@ -2,9 +2,9 @@ import type { BackupTransferTranslations } from './types_backup_transfer'
 
 // Settings ▸ Backup & Transfer, composed by en.ts as `settings.backup`.
 export const enBackupTransfer: BackupTransferTranslations = {
-  intro: 'Save this agent to a file, or carry it over to a Hermes Cloud agent.',
+  intro: 'Save this agent to a file, or carry it over to a Diting Cloud agent.',
   backupCommand: 'Back up this agent',
-  transferCommand: 'Transfer to Hermes Cloud',
+  transferCommand: 'Transfer to Diting Cloud',
   backupTitle: 'Back up this agent',
   backupHelp:
     'One file with everything: every profile, settings, memory, skills, schedules, chat history and keys. Keep it private.',
@@ -13,9 +13,9 @@ export const enBackupTransfer: BackupTransferTranslations = {
   backupSaved: 'Saved.',
   backupKept: path => `Kept on the agent at ${path}`,
   backupFailed: 'The backup did not finish',
-  transferTitle: 'Transfer to Hermes Cloud',
-  transferHelp: 'Replace a Hermes Cloud agent with this one. Nothing on this computer changes.',
-  signInTitle: 'Sign in to Hermes Cloud',
+  transferTitle: 'Transfer to Diting Cloud',
+  transferHelp: 'Replace a Diting Cloud agent with this one. Nothing on this computer changes.',
+  signInTitle: 'Sign in to Diting Cloud',
   signInHelp: 'Use the Nous account your cloud agents belong to.',
   signIn: 'Sign in',
   signInWebappHelp: 'Sign in to Nous Portal under Settings ▸ Providers, then come back here.',

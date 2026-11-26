@@ -28,7 +28,9 @@ let inFlight: { key: string; promise: Promise<string> } | null = null
 
 /** Extract the client version printed by the exact local installation launcher. */
 export function parseLocalRuntimeVersion(output: string): string {
-  const match = output.match(/^\s*Hermes Agent\s+([^\s(]+)/m)
+  // [diting] 本 fork 的 CLI --version 打印「谛听 Diting v…」；兼容上游品牌串，
+  // 保证桌面端对两种运行时的版本探测都不断线。
+  const match = output.match(/^\s*(?:Hermes Agent|谛听 Diting)\s+([^\s(]+)/m)
 
   return match?.[1]?.replace(/^v/, '') ?? ''
 }

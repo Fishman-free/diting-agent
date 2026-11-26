@@ -8,15 +8,21 @@
 /// <reference types="node" />
 'use strict'
 
+// [diting] display 名保持 ASCII：它同时是打包身份（productName/executableName/
+// MSIX CFBundleExecutable），渠道校验器（hermes_cli/release_channels.py
+// validate_identity）只接受 [A-Za-z0-9 ._-]。中文品牌「谛听 Diting」落在运行时
+// 展示层（electron/main.ts 窗口标题、i18n、字标），不进打包身份。
+// kebab/pascal/appId/cliName 属打包与线协议身份（更新器 feed、MSIX、userData
+// 迁移、CLI 探测），同样保持上游值不动。
 const variants = {
-  '': { display: 'Hermes', kebab: 'hermes', pascal: 'Hermes' },
+  '': { display: 'Diting', kebab: 'hermes', pascal: 'Hermes' },
   light: {
-    display: 'Hermes Light',
+    display: 'Diting Light',
     kebab: 'hermes-light',
     pascal: 'HermesLight'
   },
   bundled: {
-    display: 'Hermes Agent',
+    display: 'Diting Agent',
     kebab: 'hermes-bundled',
     pascal: 'HermesBundled'
   }
@@ -78,7 +84,8 @@ const identity = {
   channel: store || buildCommit ? null : light ? (canary ? 'light-canary' : 'light') : (canary ? 'canary' : 'latest'),
   appNamePascal: `${name.pascal}${pascalSuffix}`,
   artifactNamePascal: name.pascal,
-  windowsExecutableName: kebabSuffix ? cliName : displayName,
+  // [diting] exe 名保持 ASCII（displayName 已含中文，MSIX/签名链路不接受）
+  windowsExecutableName: kebabSuffix ? cliName : 'Diting',
   cliName,
   msixAppIdWithOrg: `NousResearch.${name.pascal}${pascalSuffix}`,
   ...(store

@@ -119,7 +119,7 @@ it('seats a Bot from another connection: the room on this gateway, the invitatio
   // Two default Bots: the one from Mac Mini joins under a handle and name that say where it runs.
   expect(create.members).toEqual([
     { member_id: 'default', profile: 'default', handle: 'hermes', target: { kind: 'local', profile: 'default' } },
-    { member_id: 'hermes-mac-mini', profile: 'default', handle: 'hermes-mac-mini', display_name: 'Hermes · Mac Mini',
+    { member_id: 'hermes-mac-mini', profile: 'default', handle: 'hermes-mac-mini', display_name: '谛听 · Mac Mini',
       target: { kind: 'peer', peer_id: 'install:3f2a0000000000000000000000000000', installation_id: 'install:3f2a0000000000000000000000000000', profile: 'default',
         capability_digest: MINI.room_link.catalog.catalog_digest } }])
   expect(calls.find(call => call[1] === 'groups.peer.invite')![2]).toEqual({
@@ -145,9 +145,9 @@ it.each([
   gateways(local, peer)
   await createWithMini(await openDialog())
   // The opened group chat's row says why; one notice names who is missing, so a failed seat is never silent.
-  expect(notify.mock.calls).toEqual([[{ kind: 'warning', message: words.createdNotJoined.replace('{names}', 'Hermes · Mac Mini') }]])
+  expect(notify.mock.calls).toEqual([[{ kind: 'warning', message: words.createdNotJoined.replace('{names}', '谛听 · Mac Mini') }]])
   const [binding] = Object.values($canonicalGroupBindings.get())
-  expect(peerJoinText($peerJoinErrors.get()[peerJoinKey(binding, 'hermes-mac-mini')], 'Hermes · Mac Mini', words)).toBe(why.replace('{name}', 'Hermes · Mac Mini'))
+  expect(peerJoinText($peerJoinErrors.get()[peerJoinKey(binding, 'hermes-mac-mini')], '谛听 · Mac Mini', words)).toBe(why.replace('{name}', '谛听 · Mac Mini'))
   expect(request.mock.calls.some(call => call[1] === 'groups.peer.register')).toBe(registers)
   expect(Object.values($canonicalGroupBindings.get())).toHaveLength(1)
   expect(request.mock.calls.filter(call => call[1] === 'groups.create')).toHaveLength(1)
@@ -442,7 +442,7 @@ it('describes one membership storage for every selection', async () => {
 
 
 it.each([
-  ['mixed', 'default-this-device', undefined, 'Hermes'],
+  ['mixed', 'default-this-device', undefined, '谛听'],
   ['mixed', 'default-this-device', 'Custom name', 'Custom name'],
   ['mixed', 'hermes', undefined, undefined],
   ['local', 'default-this-device', undefined, undefined]

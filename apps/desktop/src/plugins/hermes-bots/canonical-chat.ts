@@ -278,7 +278,7 @@ export function notifyBotOpenFailure(error: unknown, bot: RosterRow, step: BotOp
   const detail = errorDetail(error)
 
   if (botModeGatewayNeedsUpdate(error)) {
-    const connectionLabel = bot.connectionLabel || bot.connectionId || 'Hermes'
+    const connectionLabel = bot.connectionLabel || bot.connectionId || '谛听'
     host.notify?.({
       kind: 'error',
       title: b.openNeedsUpdateTitle,
