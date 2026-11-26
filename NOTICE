@@ -19,6 +19,9 @@ Copyright (c) 2026 Diting Agent contributors
 - 新增 `plugins/diting_guard/`：将上述能力注册为 Hermes 插件工具
 - 修改 `plugins/model-providers/custom/`：修复部分 OpenAI 兼容中转站
   （301 重定向导致鉴权头丢失等）无法使用的问题
+- 新增 `evolution/`：vendor 自 NousResearch/hermes-agent-self-evolution
+  （MIT，© 2026 Nous Research，上游 commit 0a929e3a，2026-06-17），
+  DSPy + GEPA 技能自进化；本地补丁与目录对照见 evolution/VENDOR.md
 - 其余 27,000+ 文件保持上游原样，未做更名（降低维护冲突风险）
 
 上游 README 完整保留于 docs/upstream-hermes-README.md。

@@ -266,6 +266,9 @@ piper = [
 modal = ["modal==1.6.2"]
 daytona = ["daytona==0.225.0"]
 vercel = ["vercel==0.12.0"]
+# 自进化（vendor 的 evolution/ 包，DSPy + GEPA）——重依赖，按需安装：
+#   uv pip install -e ".[evolution]"。openai/pyyaml/rich 主包已含。
+evolution = ["dspy>=3.0.0", "click>=8.0"]
 google-meet = ["playwright==1.64.0; sys_platform != 'android'", "websockets==15.0.1; sys_platform != 'android'"]
 messaging = [
   "python-telegram-bot[webhooks]==22.8",

@@ -347,3 +347,4 @@ knowledge/adversarial/
 diting/**/*.db
 *.diting-runtime/
 /.venv/
+/evolution/output/

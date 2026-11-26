@@ -2550,6 +2550,8 @@ _BUILTIN_SUBCOMMANDS = frozenset(
         "webhook", "whatsapp", "whatsapp-cloud", "worktree", "chat", "secrets", "security",
         "browser",
         "verify",
+        # [diting] 本 fork 内置挂载的插件命令（见 _register_bundled_diting_cli）
+        "diting",
         # Plugin commands missing from top-level --help is an accepted trade-off.
         "help",
     }
@@ -3021,6 +3023,29 @@ def _advertise_agent_env() -> None:
     os.environ.setdefault("HERMES_AGENT", "true")
 
 
+def _register_bundled_diting_cli(subparsers) -> None:
+    """[diting] 无条件挂载 ``hermes diting``：本 fork 的产品级命令入口。
+
+    插件式注册依赖 ``plugins.enabled``，而画像/记忆/自进化等命令必须在未启用
+    插件的干净环境里也能用；对话内工具仍按插件启用规则加载。插件启用后其同名
+    注册会被 :func:`_register_plugin_cli_commands` 跳过。
+    """
+    try:
+        from plugins.diting_guard.cli import diting_command, register_cli
+    except Exception as exc:
+        # 缺 numpy 等依赖时不阻塞其它命令（插件加载失败同样会走这里的降级）。
+        logging.getLogger(__name__).debug("diting CLI unavailable: %s", exc)
+        return
+    diting_parser = subparsers.add_parser(
+        "diting",
+        help="谛听：GEO 甄别 / 避毒推荐 / 长任务 / 浏览授权 / 中转站诊断 / 画像与记忆",
+        description="GEO 逆向甄别内核工具箱（甄别/回溯/推荐/长任务/授权/relay doctor/画像/记忆/自进化）",
+        formatter_class=__import__("argparse").RawDescriptionHelpFormatter,
+    )
+    register_cli(diting_parser)
+    diting_parser.set_defaults(func=diting_command)
+
+
 def _attach_plugin_cli_command(subparsers, cmd_info) -> None:
     """Register one plugin-provided top-level command from its descriptor."""
     plugin_parser = subparsers.add_parser(
@@ -3048,8 +3073,13 @@ def _register_plugin_cli_commands(subparsers) -> None:
         from hermes_cli.left_core_migration import recover_for_command
 
         recover_for_command(_first_positional_argv())
+        # [diting] 已注册的子命令（含内置 diting）不再接受插件同名注册，
+        # 否则 argparse 会因重复 subparser 直接报错。
+        taken = set(getattr(subparsers, "choices", {}) or {})
         seen_plugin_commands = set()
         for cmd_info in discover_plugin_cli_commands():
+            if cmd_info["name"] in taken:
+                continue
             _attach_plugin_cli_command(subparsers, cmd_info)
             seen_plugin_commands.add(cmd_info["name"])
 
@@ -3059,7 +3089,7 @@ def _register_plugin_cli_commands(subparsers) -> None:
         # See #54678.
         _resolve_deferred_platform_cli_command(_first_positional_argv())
         for cmd_info in get_plugin_manager()._cli_commands.values():
-            if cmd_info["name"] not in seen_plugin_commands:
+            if cmd_info["name"] not in seen_plugin_commands and cmd_info["name"] not in taken:
                 _attach_plugin_cli_command(subparsers, cmd_info)
     except Exception as _exc:
         logging.getLogger(__name__).debug("Plugin CLI discovery failed: %s", _exc)
@@ -3144,6 +3174,7 @@ def _build_cli_parser():
     build_bundles_parser(subparsers)
     build_plugins_parser(subparsers, cmd_plugins=cmd_plugins)
 
+    _register_bundled_diting_cli(subparsers)
     _register_plugin_cli_commands(subparsers)
 
     build_curator_parser(subparsers)
